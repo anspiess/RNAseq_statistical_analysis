@@ -1,6 +1,5 @@
-# VRE Executor for ProGeny
-
-Example pipelines file that is ready to run in the VRE matching the code in the HowTo documentation.
+# VRE Executor template
+Example pipelines file integrating *ProGeny*. It is ready to run in the VRE matching the code in the HowTo documentation.
 
 This repo structure fits well any R-based tool and might be used as the base template for future tools. It should have all of the base functionality and is set up for unit testing and with pylint to ensure code clarity.
 
