@@ -1,0 +1,110 @@
+{
+  "_id": "progeny",
+  "name": "PROGENy",
+  "title": "Pathway RespOnsive GENes",
+  "short_description": "Method to infer pathway activities from gene expression based on perturbation experiments.",
+  "long_description": "PROGENy is a method that leverages a common core of Pathway RespOnsive GENes based on publicly available perturbation experiments. It overcomes the limitations of (1) mapping the expression directly on the pathways components disregarding the effect of post-translationals modifications, and (2) the specific experimental conditions of downstream signatues. PROGENy can (i) recover the effect of known driver mutations, (ii) provide or improve strong markers for drug indications, and (iii) distinguish between oncogenic and tumor suppressor pathways for patient survival.",
+  "url": "https:\/\/gitbub.com\/inab/vre_progeny_executor",
+  "publication": "10.1038\/s41467-017-02391-6, 10.1016\/j.bbagrm.2019.194431",
+  "owner": {
+    "author": "Rosa Hernansaiz Ballesteros",
+    "institution": "Heidelberg University, Faculty of Medicine,",
+    "contact": "rosa.hernansaiz@bioquant.uni-heidleberg.de",
+    "url": "http:\/\/saezlab.org"
+  },
+  "keywords": [
+    "Pathways",
+    "singel-cell RNA",
+    "RNAseq",
+    "microarray"
+  ],
+  "keywords_tool": [
+    "progeny"
+  ],
+  "infrastructure": {
+    "memory": 8,
+    "cpus": 2,
+    "executable": "\/home\/user\/vre_progeny_executor\/VRE_RUNNER",
+    "clouds": {
+      "mug-irb": {
+        "launcher": "SGE",
+        "default_cloud": true
+      }
+    }
+  },
+  "input_files": [
+    {
+      "name": "input_reads",
+      "description": "Gene expression matrix with HGNC/MGI symbols in rows and samples in columns.",
+      "help": "In order to run PROGENy in single-cell RNAseq data, it also accepts Seurat and SingleCellExperiment object, taking the normalized counts for the computation.",
+      "file_type": [
+        "CSV"
+      ],
+      "data_type": [
+        "expression_profile"
+      ],
+      "required": true,
+      "allow_multiple": false
+    }
+  ],
+  "input_files_public_dir": [],
+  "input_files_combinations": [
+    {
+      "description": "Analyse gene expression matrix",
+      "input_files": [
+        "input_reads"
+      ]
+    }
+  ],
+  "arguments": [
+    {
+      "name": "organism",
+      "description": "The model organism",
+      "help": "Human or Mouse",
+      "type": "enum_multiple",
+      "enum_items": {
+        "description": [
+          "Human",
+          "Mouse"
+        ],
+        "name": [
+          "Human",
+          "Mouse"
+        ]
+      },
+      "default": [
+        "Human"
+      ]
+    },
+    {
+      "name": "zscores",
+      "description": "Return z-score directly or normalized.",
+      "help": "The normalized z-score values range between -1 and 1.",
+      "type": "character",
+      "default": "TRUE"
+    },
+    {
+      "name": "top",
+      "description": "Number of genes to create the model matrix.",
+      "help": "The top n genes are selected according to significance (p-value).",
+      "type": "integer",
+      "default": 100
+    }
+  ],
+  "has_custom_viewer": true,
+  "output_files": [
+    {
+      "name": "progeny_scores",
+      "required": true,
+      "allow_multiple": false,
+      "file": {
+        "file_type": "CSV",
+        "data_type": "dorothea_scores",
+        "meta_data": {
+          "visible": true,
+          "description": "A matrix with z-scores where samples are in columns and pathways in rows."
+        }
+      }
+    }
+  ]
+}

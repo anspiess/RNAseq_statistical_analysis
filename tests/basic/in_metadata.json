@@ -1,0 +1,33 @@
+[
+    {
+        "_id": "unique_file_id_5f0d9cada30326.2860077",
+        "file_path": "/home/user/vre_progeny_executor/tests/basic/data/progeny_example.csv",
+        "file_type": "CSV",
+        "data_type": "expression_profile",
+        "compressed": 0,
+        "sources": [],
+        "user_id": "user_id",
+        "creation_time": {
+            "$date": {
+                "$numberLong": "1594727597000"
+            }
+        },
+        "taxon_id": 0,
+        "meta_data": {
+            "type": "file",
+            "size": 0,
+            "project": "my_project_id",
+            "atime": {
+                "$date": {
+                    "$numberLong": "1594727597000"
+                }
+            },
+            "parentDir": "unique_file_id_5f0d9cada30920.05450962",
+            "lastAccess": {
+                "$date": {
+                    "$numberLong": "1594727597000"
+                }
+            }
+        }
+    }
+]

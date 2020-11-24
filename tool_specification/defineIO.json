@@ -1,0 +1,77 @@
+{
+  "_id": "progeny",
+  "input_files": [
+    {
+      "name": "input_reads",
+      "description": "Gene expression matrix with HGNC/MGI symbols in rows and samples in columns.",
+      "help": "In order to run PROGENy in single-cell RNAseq data, it also accepts Seurat and SingleCellExperiment object, taking the normalized counts for the computation.",
+      "file_type": [
+        "CSV"
+      ],
+      "data_type": [
+        "expression_profile"
+      ],
+      "required": true,
+      "allow_multiple": false
+    }
+  ],
+  "input_files_public_dir": [],
+  "input_files_combinations": [
+    {
+      "description": "Gene expression matrix with HGNC/MGI symbols in rows and samples in columns.",
+      "input_files": [
+        "input_reads"
+      ]
+    }
+  ],
+  "arguments": [
+    {
+      "name": "organism",
+      "description": "The model organism",
+      "help": "Human or Mouse",
+      "type": "enum_multiple",
+      "enum_items": {
+        "description": [
+          "Human",
+          "Mouse"
+        ],
+        "name": [
+          "Human",
+          "Mouse"
+        ]
+      },
+      "default": [
+        "Human"
+      ]
+    },
+    {
+      "name": "zscores",
+      "description": "Return z-score directly or normalized.",
+      "help": "The normalized z-score values range between -1 and 1.",
+      "type": "character",
+      "default": "TRUE"
+    },
+    {
+      "name": "top",
+      "description": "Number of genes to create the model matrix.",
+      "help": "The top n genes are selected according to significance (p-value).",
+      "type": "integer",
+      "default": 100
+    }
+  ],
+  "output_files": [
+    {
+      "name": "progeny_scores",
+      "required": true,
+      "allow_multiple": false,
+      "file": {
+        "file_type": "CSV",
+        "data_type": "progeny_scores",
+        "meta_data": {
+          "visible": true,
+          "description": "A matrix with z-scores where samples are in columns and pathways in rows."
+        }
+      }
+    }
+  ]
+}

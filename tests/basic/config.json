@@ -1,0 +1,52 @@
+{
+    "input_files": [
+        {
+            "name": "input_reads",
+            "value": "unique_file_id_5f0d9cada30326.2860077",
+            "required": true,
+            "allow_multiple": false
+        }
+    ],
+    "arguments": [
+        {
+            "name": "execution",
+            "value": "/home/user/vre_progeny_executor/tests/basic/run000"
+        },
+        {
+            "name": "project",
+            "value": "test"
+        },
+        {
+            "name": "description",
+            "value": "PROGENy test"
+        },
+        {
+            "name": "organism",
+            "value": "Human"
+
+        },
+        {
+            "name": "zscores",
+            "value": "TRUE"
+        },
+        {
+            "name": "top",
+            "value": 100
+        }
+    ],
+    "output_files": [
+        {
+            "name": "progeny_scores",
+            "required": true,
+            "allow_multiple": false,
+            "file": {
+                "file_type": "CSV",
+                "data_type": "progeny_scores",
+                "meta_data": {
+                    "visible": true,
+                    "description": "Z-scores for cancer-related pathways"
+                }
+            }
+        }
+    ]
+}

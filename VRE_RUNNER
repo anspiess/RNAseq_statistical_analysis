@@ -1,0 +1,28 @@
+#!/bin/bash
+
+REALPATH="$(realpath "$0")"
+BASEDIR="$(dirname "$REALPATH")"
+case "$BASEDIR" in
+/*)
+  true
+  ;;
+*)
+  BASEDIR="${PWD}/$BASEDIR"
+  ;;
+esac
+
+PROGNAME="$(basename "$0")"
+
+for prog in Rscript; do  # add software dependencies
+  type -a "$prog" >/dev/null
+
+  if [ $? -ne 0 ]; then
+    echo "UNCONFIGURED: No $prog executable found" 1>&2
+    exit 1
+  fi
+done
+
+# shellcheck disable=SC1090
+source "$BASEDIR"/venv/bin/activate
+exec python -u "${BASEDIR}"/"${PROGNAME}".py "$@"
+exit 1
